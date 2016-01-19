@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">GeoTaggingTZ</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="longtitude">Longtitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="typeURL">Type URL there</string>
+    <string name="addgeotag">Add a geoTag</string>
+    <string name="Title">Simple GeoTagger</string>
+    <string name="newTag">Create a tag</string>
+    <string name="map">Show map</string>
+    <string name="total">Total Information</string>
+    <string name="inputMsg">Input message there</string>
+    <string name="addMsg">Add a message</string>
+    <string name="item_image">image</string>
+    <string name="title_total_info">Now you can watch your results</string>
+    <string name="show_img">Show images</string>
+    <string name="count_total">Count a total distance</string>
+    <string name="title_distance_is">Total distance is</string>
+</resources>

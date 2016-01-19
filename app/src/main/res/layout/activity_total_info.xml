@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@drawable/globe">
+
+    <TextView
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_total_info"
+        android:id="@+id/textView2"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:textSize="35dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_img"
+        android:textAllCaps="false"
+        android:id="@+id/btnWatchImg"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/title_distance_is"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/txtTitleDistance"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/txtCountTotal"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

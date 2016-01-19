@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download by URL"
+        android:id="@+id/btnURL"
+        android:textAllCaps="false"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick from gallery"
+        android:textAllCaps="false"
+        android:id="@+id/btnGallery"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/img"
+        android:layout_marginTop="80dp"
+        android:scaleType="fitCenter" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/img"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/longtitude"
+            android:id="@+id/txtLongtitude"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="0dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/coordLong"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="0dp"
+            android:layout_below="@+id/txtLongtitude"
+            android:layout_alignParentStart="true"
+            android:text="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/latitude"
+            android:id="@+id/txtLatitude"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="0dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/coordLatit"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="0dp"
+            android:layout_below="@+id/txtLatitude"
+            android:layout_alignParentEnd="true"
+            android:text="0" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addgeotag"
+            android:textAllCaps="false"
+            android:id="@+id/btnAddGeoTag"
+            android:layout_alignTop="@+id/txtLongtitude"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addMsg"
+            android:textAllCaps="false"
+            android:id="@+id/btnAddMsg"
+            android:layout_above="@+id/btnAddGeoTag"
+            android:layout_alignEnd="@+id/btnAddGeoTag" />
+    </RelativeLayout>
+
+</RelativeLayout>
