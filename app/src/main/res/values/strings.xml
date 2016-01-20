@@ -5,7 +5,7 @@
     <string name="latitude">Latitude</string>
     <string name="typeURL">Type URL there</string>
     <string name="addgeotag">Add a geoTag</string>
-    <string name="Title">Simple GeoTagger</string>
+    <string name="Title">Simple\nGeoTagger</string>
     <string name="newTag">Create a tag</string>
     <string name="map">Show map</string>
     <string name="total">Total Information</string>

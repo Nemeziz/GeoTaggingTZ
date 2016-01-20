@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,7 +20,7 @@ import com.project.geotaggingtz.utilities.DataBaseHelper;
 import com.project.geotaggingtz.R;
 import com.project.geotaggingtz.utilities.UtilityClass;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private DataBaseHelper dbHelper;
@@ -49,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    public void showGeoTagsOnMap(GoogleMap map){
+    public void showGeoTagsOnMap(GoogleMap map) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 //        dbHelper.deleteAll();
         Cursor cursor = db.query(DataBaseHelper.TABLE_NAME, null, null, null, null, null, null);
@@ -60,7 +61,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             int msgColIndex = cursor.getColumnIndex(DataBaseHelper.MESSAGE);
             int imageColIndex = cursor.getColumnIndex(DataBaseHelper.IMAGE);
             do {
-                LatLng lng = new LatLng(cursor.getDouble(latitudeColIndex), cursor.getDouble(longtitudeColIndex));
+                LatLng lng = new LatLng(Double.parseDouble(cursor.getString(latitudeColIndex))
+                        , Double.parseDouble(cursor.getString(longtitudeColIndex)));
                 lngBounds.include(lng);
                 String text = cursor.getString(msgColIndex);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(cursor.getBlob(imageColIndex), 0, cursor.getBlob(imageColIndex).length);
@@ -74,6 +76,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         cursor.close();
         db.close();
     }
-
 }
 

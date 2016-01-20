@@ -1,6 +1,8 @@
 package com.project.geotaggingtz.utilities;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -90,4 +92,5 @@ public class UtilityClass {
         final int year = c.get(Calendar.YEAR);
         return new Date(year, month, day).getTime();
     }
+
 }

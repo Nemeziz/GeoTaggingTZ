@@ -17,6 +17,7 @@ import java.util.List;
 public class CustomListViewAdapter extends ArrayAdapter<ImageItem> {
 
     Context context;
+    LayoutInflater mInflater;
 
     public CustomListViewAdapter(Context context, int resourceId,
                                  List<ImageItem> items) {
@@ -32,10 +33,9 @@ public class CustomListViewAdapter extends ArrayAdapter<ImageItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         ImageItem imageItem = getItem(position);
-
-        LayoutInflater mInflater = (LayoutInflater) context
-                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
+            mInflater = (LayoutInflater) context
+                    .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.list_images, null);
             holder = new ViewHolder();
             holder.imageView = (ImageView) convertView.findViewById(R.id.image);

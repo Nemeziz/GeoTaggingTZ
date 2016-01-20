@@ -5,9 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Arrays;
 
@@ -26,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static ContentValues cv = new ContentValues();
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -48,10 +56,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public static void writeGeoTagToDB(DataBaseHelper dbHelper,TextView longtitude,TextView latitude,String msg,ImageView imageView){
+    public static void writeGeoTagToDB(DataBaseHelper dbHelper, TextView longtitude, TextView latitude, String msg, ImageView imageView) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        cv.put(LONGTITUDE, Double.parseDouble(longtitude.getText().toString()));
-        cv.put(LATITUDE, Double.parseDouble(latitude.getText().toString()));
+        cv.put(LONGTITUDE, (longtitude.getText().toString()));
+        cv.put(LATITUDE, (latitude.getText().toString()));
         cv.put(MESSAGE, msg);
         cv.put(DATE, UtilityClass.countCurrentDate());
         cv.put(IMAGE, UtilityClass.getByteImage(imageView));
@@ -65,7 +73,38 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void logDataBase(){
+    public static LatLngBounds showGeoTagsOnMap(GoogleMap map,DataBaseHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        dbHelper.deleteAll();
+        LatLngBounds bounds = null;
+        Cursor cursor = db.query(DataBaseHelper.TABLE_NAME, null, null, null, null, null, null);
+        LatLngBounds.Builder lngBounds = new LatLngBounds.Builder();
+        if (cursor.moveToFirst()) {
+            int latitudeColIndex = cursor.getColumnIndex(DataBaseHelper.LATITUDE);
+            int longtitudeColIndex = cursor.getColumnIndex(DataBaseHelper.LONGTITUDE);
+            int msgColIndex = cursor.getColumnIndex(DataBaseHelper.MESSAGE);
+            int imageColIndex = cursor.getColumnIndex(DataBaseHelper.IMAGE);
+            do {
+                LatLng lng = new LatLng(Double.parseDouble(cursor.getString(latitudeColIndex))
+                        , Double.parseDouble(cursor.getString(longtitudeColIndex)));
+                lngBounds.include(lng);
+                String text = cursor.getString(msgColIndex);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(cursor.getBlob(imageColIndex), 0, cursor.getBlob(imageColIndex).length);
+                map.addMarker(new MarkerOptions().position(lng)
+                        .title(text)
+                        .icon(BitmapDescriptorFactory.fromBitmap(UtilityClass.getResizedBitmap(bitmap, 150, 150))));
+            }
+            while (cursor.moveToNext());
+            bounds = lngBounds.build();
+        }
+        cursor.close();
+        db.close();
+        return bounds;
+    }
+
+
+
+    public void logDataBase() {
         SQLiteDatabase database = this.getWritableDatabase();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
         Cursor c = database.query(TABLE_NAME, null, null, null, null, null, null);

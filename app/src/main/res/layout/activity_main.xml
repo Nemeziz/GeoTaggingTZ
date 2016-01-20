@@ -37,9 +37,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/Title"
         android:id="@+id/txtTitle"
-        android:gravity="fill_vertical"
         android:textColor="@color/colorWhite"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/btnTag"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical|center_horizontal" />
 </RelativeLayout>

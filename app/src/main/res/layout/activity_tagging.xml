@@ -20,18 +20,19 @@
         android:text="Pick from gallery"
         android:textAllCaps="false"
         android:id="@+id/btnGallery"
-        android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="324dp"
         android:id="@+id/img"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="56dp"
         android:scaleType="fitCenter" />
 
     <RelativeLayout
+        android:paddingRight="24dp"
+        android:paddingLeft="24dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/img"
@@ -44,7 +45,6 @@
             android:text="@string/longtitude"
             android:id="@+id/txtLongtitude"
             android:layout_gravity="left|top"
-            android:layout_marginLeft="0dp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
@@ -54,7 +54,6 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/coordLong"
             android:layout_gravity="left|center_vertical"
-            android:layout_marginLeft="0dp"
             android:layout_below="@+id/txtLongtitude"
             android:layout_alignParentStart="true"
             android:text="0" />
@@ -96,8 +95,7 @@
             android:text="@string/addMsg"
             android:textAllCaps="false"
             android:id="@+id/btnAddMsg"
-            android:layout_above="@+id/btnAddGeoTag"
-            android:layout_alignEnd="@+id/btnAddGeoTag" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </RelativeLayout>
