@@ -4,10 +4,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,12 +43,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         showGeoTagsOnMap(mMap);
-        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
-            @Override
-            public void onMapLoaded() {
-                mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, PADDING));
-            }
-        });
     }
 
 
@@ -72,6 +68,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
             while (cursor.moveToNext());
             bounds = lngBounds.build();
+            CameraUpdate ca = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
+            map.animateCamera(ca);
         }
         cursor.close();
         db.close();
